@@ -4,8 +4,7 @@ import BackendCode.CarOwner;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import org.netbeans.lib.awtextra.AbsoluteConstraints;
-import org.netbeans.lib.awtextra.AbsoluteLayout;
+
 
 public class CarOwner_Update {
 

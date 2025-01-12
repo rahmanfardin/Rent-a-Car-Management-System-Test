@@ -4,8 +4,8 @@ import BackendCode.Customer;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import org.netbeans.lib.awtextra.AbsoluteConstraints;
-import org.netbeans.lib.awtextra.AbsoluteLayout;
+//
+
 
 public class Customer_Add {
 

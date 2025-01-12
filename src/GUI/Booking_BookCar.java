@@ -8,8 +8,6 @@ import java.awt.event.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.*;
-import org.netbeans.lib.awtextra.AbsoluteConstraints;
-import org.netbeans.lib.awtextra.AbsoluteLayout;
 
 /**
  *
