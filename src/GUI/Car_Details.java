@@ -5,8 +5,7 @@ import BackendCode.Car;
 import BackendCode.CarOwner;
 import java.awt.Dimension;
 import javax.swing.table.DefaultTableModel;
-import org.netbeans.lib.awtextra.AbsoluteConstraints;
-import org.netbeans.lib.awtextra.AbsoluteLayout;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
