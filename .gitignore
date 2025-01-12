@@ -1,3 +1,4 @@
 *.ser
 .classpath
 /build/classes/.gitignore
+.class
