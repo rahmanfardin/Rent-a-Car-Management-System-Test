@@ -23,11 +23,11 @@ import javax.swing.JTextField;
  */
 public class Login {
 
-    private final JPanel MiniPanel, MainPanel;
-    private final JButton Close_Button, Login_Button;
-    private final JLabel PW_Label, UN_Label, Image_jLabel, info_Label;
-    private final JTextField UN_TextField;
-    private final JPasswordField Password_Field;
+    final JPanel MiniPanel, MainPanel;
+    final JButton Close_Button, Login_Button;
+    final JLabel PW_Label, UN_Label, Image_jLabel, info_Label;
+    final JTextField UN_TextField;
+    final JPasswordField Password_Field;
 
     public Login() {
 
@@ -96,7 +96,7 @@ public class Login {
         return MainPanel;
     }
 
-    private class LoginActionListener implements ActionListener {
+    class LoginActionListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {

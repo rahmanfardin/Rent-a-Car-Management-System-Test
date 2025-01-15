@@ -97,7 +97,7 @@ public class CarOwner_Add {
         Cancel_Button.addActionListener(new CarOwner_Add_ActionListener());
     }
 
-    private class CarOwner_Add_ActionListener implements ActionListener {
+    class CarOwner_Add_ActionListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {

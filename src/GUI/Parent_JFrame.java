@@ -124,8 +124,12 @@ public class Parent_JFrame {
     }
 
     public static JFrame getMainFrame() {
+        if (MainFrame == null) {
+            new Parent_JFrame();
+        }
         return MainFrame;
     }
+
 
     private class Parent_JFrame_ActionListner implements ActionListener {
 

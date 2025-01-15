@@ -14,9 +14,9 @@ import javax.swing.table.DefaultTableCellRenderer;
 public class Customer_Details implements ActionListener {
 
     private JTextField SearchID_TextField;
-    private JButton SearchID_Button, SearchName_Button, Update_Button, Add_Button, Remove_Button, Back_Button, Logout_Button, ClearBill_Button;
+    public JButton SearchID_Button, SearchName_Button, Update_Button, Add_Button, Remove_Button, Back_Button, Logout_Button, ClearBill_Button;
     private JScrollPane jScrollPane1;
-    private JTable jTable1;
+    JTable jTable1;
     private JTextField SearchName_TextField;
     static DefaultTableModel tablemodel;
     private JPanel MainPanel;
