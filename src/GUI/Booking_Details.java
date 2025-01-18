@@ -25,11 +25,20 @@ public class Booking_Details {
 
     private static DefaultTableModel tablemodel; // it is made static so that it can be accessed in add GUI class to update the Jtable when a new record is added
 
-    private static JButton SearchCustomerID_Button, SearchCarRegNo_Button,
-            BackButton, LogoutButton, BookCar_Button, UnbookCar_Button;
+    static JButton SearchCustomerID_Button;
+
+	static JButton SearchCarRegNo_Button;
+
+	static JButton BackButton;
+
+	static JButton LogoutButton;
+
+	static JButton BookCar_Button;
+
+	static JButton UnbookCar_Button;
     private static JTextField CustomerID_TextField, CarRegNo_TextField;
     private static JScrollPane jScrollPane1;
-    private static JTable jTable1;
+    static JTable jTable1;
     private JPanel MainPanel;
 
     public Booking_Details() {
