@@ -18,7 +18,7 @@ public class Car_Update extends JFrame {
     JLabel CarID_Label, CarIDValidity_Label;
     JTextField CarID_TextField;
 
-    private Car car;
+    protected Car car;
 
     public Car_Update() {
         super("Update Car");
@@ -104,7 +104,7 @@ public class Car_Update extends JFrame {
         });
     }
 
-    private class Car_UpdateInner extends JFrame {
+    class Car_UpdateInner extends JFrame {
 
         JButton Update_Button, Cancel_Button;
         JLabel Maker_Label, Name_Label, Color_Label, Type_Label, SeatingCapacity_Label, Model_Label, Condition_Label, RegNo_Label, RentPerHour_Label,

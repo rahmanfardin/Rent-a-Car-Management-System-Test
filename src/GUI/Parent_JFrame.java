@@ -124,6 +124,9 @@ public class Parent_JFrame {
     }
 
     public static JFrame getMainFrame() {
+    	if (MainFrame == null) {
+    		MainFrame = new JFrame();
+        }
         return MainFrame;
     }
 
@@ -254,4 +257,11 @@ public class Parent_JFrame {
             }
         }
     }
+
+	public static void setMainFrame(JFrame testFrame) {
+		// TODO Auto-generated method stub
+		MainFrame = testFrame;
+	}
+
+	
 }

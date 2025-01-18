@@ -62,75 +62,84 @@ public class Booking_UnBookCar extends JFrame {
         UnBook_Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
                 String carID = CarID_TextField.getText().trim();
-                if (!carID.isEmpty()) {
-                    try {
-                        if (Integer.parseInt(carID) > 0) {
-                            CarIDValidity_Label.setText("");
-                            car = Car.SearchByID(Integer.parseInt(carID));
-                            if (car != null) {
-                                if (car.isRented()) {
-                                    CarIDValidity_Label.setText("");
-                                } else {
-                                    car = null;
-                                    JOptionPane.showMessageDialog(null, "This car is not booked !");
-                                }
-                            } else {
-                                car = null;
-                                JOptionPane.showMessageDialog(null, "Car ID does not exists !");
-                            }
-                        } else {
-                            carID = null;
-                            CarIDValidity_Label.setText("                                                            "
-                                    + "ID cannot be '0' or negative !");
-                        }
-                    } catch (NumberFormatException ex) {
-                        carID = null;
-                        CarIDValidity_Label.setText("                                                            "
-                                + "Invalid ID !");
-                    }
-                } else {
-                    carID = null;
-                    CarIDValidity_Label.setText("                                                            "
-                            + "Enter Car ID !");
-                }
-
-                if (carID != null && car != null) {
+                if (validateCarID(carID)) {
                     setEnabled(false);
-                    int showConfirmDialog = JOptionPane.showConfirmDialog(null, "You are about to UnBook this Car\n" + car.toString()
-                            + "\n Are you sure you want to continue ??", "UnBook Confirmation", OK_CANCEL_OPTION);
-                    if (showConfirmDialog == 0) {
+                    int confirm = JOptionPane.showConfirmDialog(
+                        null,
+                        "You are about to UnBook this Car\n" + car.toString()
+                        + "\n Are you sure you want to continue ??",
+                        "UnBook Confirmation",
+                        OK_CANCEL_OPTION
+                    );
 
-                        ArrayList<Booking> booking = Booking.SearchByCarID(Integer.parseInt(carID));
-                        Booking last = booking.get((booking.size() - 1));
-                        last.setReturnTime(System.currentTimeMillis());
-                        last.Update();
-
-                        int bill = last.calculateBill(); 
-                        
-                        CarOwner carOwner = last.getCar().getCarOwner();
-                        carOwner.setBalance((carOwner.getBalance() + bill));
-                        carOwner.Update();
-
-                        Customer customer = last.getCustomer();
-                        customer.setBill(customer.getBill()+bill);
-                        customer.Update();
-                        
-                        Parent_JFrame.getMainFrame().getContentPane().removeAll();
-                        Booking_Details cd = new Booking_Details();
-                        Parent_JFrame.getMainFrame().add(cd.getMainPanel());
-                        Parent_JFrame.getMainFrame().getContentPane().revalidate();
-                        JOptionPane.showMessageDialog(null, "Car Successfully UnBooked !");
-                        Parent_JFrame.getMainFrame().setEnabled(true);
-                        dispose();
+                    if (confirm == JOptionPane.OK_OPTION) {
+                        processUnBooking(Integer.parseInt(carID));
                     } else {
                         setEnabled(true);
                     }
                 }
             }
-        }
-        );
+
+            private boolean validateCarID(String carID) {
+                if (carID.isEmpty()) {
+                    CarIDValidity_Label.setText("Enter Car ID!");
+                    return false;
+                }
+                try {
+                    int parsedID = Integer.parseInt(carID);
+                    if (parsedID <= 0) {
+                        CarIDValidity_Label.setText("ID cannot be '0' or negative!");
+                        return false;
+                    }
+                    car = Car.SearchByID(parsedID);
+                    if (car == null) {
+                        JOptionPane.showMessageDialog(null, "Car ID does not exist!");
+                        return false;
+                    }
+                    if (!car.isRented()) {
+                        JOptionPane.showMessageDialog(null, "This car is not booked!");
+                        return false;
+                    }
+                    CarIDValidity_Label.setText("");
+                    return true;
+                } catch (NumberFormatException ex) {
+                    CarIDValidity_Label.setText("Invalid ID!");
+                    return false;
+                }
+            }
+
+            private void processUnBooking(int carID) {
+                ArrayList<Booking> bookingList = Booking.SearchByCarID(carID);
+                if (!bookingList.isEmpty()) {
+                    Booking lastBooking = bookingList.get(bookingList.size() - 1);
+                    lastBooking.setReturnTime(System.currentTimeMillis());
+                    lastBooking.Update();
+
+                    int bill = lastBooking.calculateBill();
+
+                    CarOwner carOwner = lastBooking.getCar().getCarOwner();
+                    carOwner.setBalance(carOwner.getBalance() + bill);
+                    carOwner.Update();
+
+                    Customer customer = lastBooking.getCustomer();
+                    customer.setBill(customer.getBill() + bill);
+                    customer.Update();
+                    
+                  
+
+                    Parent_JFrame.getMainFrame().getContentPane().removeAll();
+                    Booking_Details bookingDetails = new Booking_Details();
+                    Parent_JFrame.getMainFrame().add(bookingDetails.getMainPanel());
+                    Parent_JFrame.getMainFrame().getContentPane().revalidate();
+
+                    JOptionPane.showMessageDialog(null, "Car Successfully UnBooked!");
+                }
+                Parent_JFrame.getMainFrame().setEnabled(true);
+                dispose();
+            }
+        });
+
         Cancel_Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

@@ -17,7 +17,7 @@ import java.util.ArrayList;
  */
 public class Car implements Serializable {
 
-    private int ID;
+    private static int ID;
     private String Maker, Name, Colour, Type;
     int SeatingCapacity;
     String Model, Condition, RegNo;
@@ -208,7 +208,7 @@ public class Car implements Serializable {
         }
     }
 
-    public void Remove() {
+    public static void Remove() {
 
         ArrayList<Car> car = Car.View();
         // for loop for deleting the required Car
@@ -347,6 +347,28 @@ public class Car implements Serializable {
             }
         }
         return false;
+    }
+
+    public void setRented(boolean rented) {
+        if (rented) {
+            ArrayList<Car> carList = View();
+            for (Car car : carList) {
+                if (car.ID == this.ID) {
+                    car.Condition = "Rented";
+                    car.Update();
+                    break;
+                }
+            }
+        } else {
+            ArrayList<Car> carList = View();
+            for (Car car : carList) {
+                if (car.ID == this.ID) {
+                    car.Condition = "Available";
+                    car.Update();
+                    break;
+                }
+            }
+        }
     }
 
 }

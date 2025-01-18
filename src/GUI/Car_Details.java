@@ -21,14 +21,27 @@ import javax.swing.table.DefaultTableCellRenderer;
 
 public class Car_Details {
 
-    private static DefaultTableModel tablemodel; // it is made static so that it can be accessed in add GUI class to update the Jtable when a new record is added
+    protected static DefaultTableModel tablemodel; // it is made static so that it can be accessed in add GUI class to update the Jtable when a new record is added
 
-    private static JButton SearchName_Button, SearchRegNo_Button, Add_Button,
-            Update_Button, Remove_Button, BackButton, LogoutButton;
-    private static JTextField SearchName_TextField, SearchRegNo_TextField;
-    private static JScrollPane jScrollPane1;
-    private static JTable jTable1;
-    private JPanel MainPanel;
+    protected static JButton SearchName_Button;
+
+	protected JButton SearchRegNo_Button;
+
+	protected static JButton Add_Button;
+
+	protected static JButton Update_Button;
+
+	protected static JButton Remove_Button;
+
+	protected static JButton BackButton;
+
+	protected static JButton LogoutButton;
+    protected static JTextField SearchName_TextField;
+
+    protected JTextField SearchRegNo_TextField;
+    protected static JScrollPane jScrollPane1;
+    protected static JTable jTable1;
+    protected JPanel MainPanel;
 
     /**
      * @return the tablemodel
@@ -36,7 +49,9 @@ public class Car_Details {
     public static DefaultTableModel getTablemodel() {
         return tablemodel;
     }
-
+    public void setVisible(boolean visible) {
+        MainPanel.setVisible(visible);
+    }
     public JPanel getMainPanel() {
         return MainPanel;
     }

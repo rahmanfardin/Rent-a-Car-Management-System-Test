@@ -359,4 +359,40 @@ public class Booking implements Serializable {
         }
         return allCars;
     }
+
+    public static Booking getBookingByCarId(int carID) {
+        ObjectInputStream inputStream = null;
+        try {
+            // Open file for reading
+            inputStream = new ObjectInputStream(new FileInputStream("Booking.ser"));
+            boolean EOF = false;
+
+            // Keep reading file until it ends
+            while (!EOF) {
+                try {
+                    Booking myObj = (Booking) inputStream.readObject();
+                    if (myObj.car.getID() == carID) {
+                        return myObj; // Return the booking if the car ID matches
+                    }
+                } catch (ClassNotFoundException e) {
+                    System.out.println(e);
+                } catch (EOFException end) {
+                    EOF = true;
+                }
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println(e);
+        } catch (IOException e) {
+            System.out.println(e);
+        } finally {
+            try {
+                if (inputStream != null) {
+                    inputStream.close();
+                }
+            } catch (IOException e) {
+                System.out.println(e);
+            }
+        }
+        return null; // Return null if no booking is found with the given car ID
+    }
 }

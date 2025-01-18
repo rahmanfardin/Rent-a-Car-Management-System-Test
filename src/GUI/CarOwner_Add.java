@@ -106,7 +106,7 @@ public class CarOwner_Add {
                     String cnic = CNIC_TextField.getText().trim();
                     String name = Name_TextField.getText().trim();
                     String contact = Contact_TextField.getText().trim();
-
+                    
                     if (CarOwner.isCNICValid(cnic)) {
                         CarOwner carOwner = CarOwner.SearchByCNIC(cnic);
                         if (carOwner == null) {
@@ -121,15 +121,18 @@ public class CarOwner_Add {
                                     JOptionPane.showMessageDialog(null, "Car Owner added successfully !");
                                     frame.dispose();
                                 } else {
+                                	contactValidity_Label.setText("Invalid contact no. !");
                                     JOptionPane.showMessageDialog(null, "Invalid contact no. !");
                                 }
                             } else {
+                            	NameValidity_Label.setText("Invalid Name !");
                                 JOptionPane.showMessageDialog(null, "Invalid Name !");
                             }
                         } else {
                             JOptionPane.showMessageDialog(null, "This CNIC is already registered !");
                         }
                     } else {
+                    	CNICValidity_Label.setText("Invalid CNIC");
                         JOptionPane.showMessageDialog(null, "Invalid CNIC");
                     }
                     break;
