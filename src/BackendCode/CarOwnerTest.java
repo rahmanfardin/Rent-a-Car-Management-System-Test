@@ -25,6 +25,17 @@ public class CarOwnerTest {
             file.delete();
         }
     }
+    
+    @Test
+	public void testSetBalance() {
+    	carOwner.setBalance(120);
+		assertEquals(120, carOwner.getBalance());
+	}
+
+	@Test
+	public void testGetBalance() {
+		assertEquals(1000, carOwner.getBalance());
+	}
 
     @Test
     public void testAdd() {

@@ -7,12 +7,12 @@ import static org.junit.Assert.*;
 public class PersonTest {
 
     @Test
-    public void testIsCNICValid_ValidCNIC() {
+    public void testIsCNICValid() {
         assertTrue(Person.isCNICValid("1234567890123"));
     }
 
     @Test
-    public void testIsCNICValid_InvalidCNICLength() {
+    public void testIsCNICInvalid() {
         assertFalse(Person.isCNICValid("12345678901"));
     }
 

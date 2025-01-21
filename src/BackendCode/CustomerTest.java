@@ -21,6 +21,17 @@ public class CustomerTest {
             file.delete();
         }
     }
+    
+    @Test
+	public void testGetBill() {
+		assertEquals(0, customer.getBill());
+	}
+
+	@Test
+	public void testSetBill() {
+		customer.setBill(120);
+		assertEquals(120, customer.getBill());
+	}
 
     @Test
     public void testAdd() {
